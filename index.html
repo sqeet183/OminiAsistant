@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omini Assistant | Корпорация Матвей</title>
+    <style>
+        /* Все стили вшиты прямо сюда, чтобы точно работало */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #050505; color: #fff; overflow-x: hidden; }
+        
+        /* Нейроны на фоне */
+        #neural-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
+        /* Шапка */
+        header { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 20px 50px; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #1a1a1a; }
+        .logo { font-size: 24px; font-weight: bold; color: #00aaff; }
+        nav { display: flex; gap: 20px; align-items: center; }
+        .nav-btn { color: #b0b0b0; text-decoration: none; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        .nav-btn:hover { color: #00aaff; }
+
+        /* Секции */
+        section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        .hero { align-items: flex-start; background: radial-gradient(circle at 70% 50%, #002b4d 0%, #050505 60%); }
+        h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; }
+        .neon { color: #00aaff; text-shadow: 0 0 15px rgba(0, 170, 255, 0.6); }
+        p { color: #b0b0b0; font-size: 1.2rem; margin-bottom: 30px; max-width: 500px; }
+        
+        .btn { display: inline-block; background: #007bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; box-shadow: 0 0 15px rgba(0, 123, 255, 0.5); border: none; cursor: pointer; }
+        .btn:hover { background: #0056b3; box-shadow: 0 0 25px rgba(0, 123, 255, 0.9); transform: translateY(-2px); }
+
+        /* Блоки контента */
+        .features, .screens { text-align: center; background: rgba(10,10,10,0.8); }
+        h2 { font-size: 2.5rem; margin-bottom: 40px; color: #00aaff; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
+        .card { background: #111; padding: 30px; border-radius: 12px; border: 1px solid #222; transition: 0.3s; }
+        .card:hover { border-color: #00aaff; transform: translateY(-5px); }
+        .card h3 { color: #00aaff; margin-bottom: 15px; }
+
+        .screenshot-box { max-width: 900px; margin: 0 auto; border-radius: 12px; border: 2px solid #007bff; box-shadow: 0 0 30px rgba(0, 123, 255, 0.3); overflow: hidden; }
+        .screenshot-box img { width: 100%; display: block; }
+
+        .download { text-align: center; background: rgba(0,26,51,0.8); }
+        .warning { background: rgba(255, 193, 7, 0.1); border: 1px solid #ffc107; color: #ffd54f; padding: 20px; border-radius: 10px; max-width: 600px; margin: 40px auto; text-align: left; }
+        .warning strong { color: #ffca28; }
+        
+        footer { text-align: center; padding: 30px; background: #000; color: #555; border-top: 1px solid #111; }
+    </style>
+</head>
+<body>
+
+    <canvas id="neural-bg"></canvas>
+
+    <header>
+        <div class="logo">Omini.</div>
+        <nav>
+            <a onclick="scrollToSection('features')" class="nav-btn">Возможности</a>
+            <a onclick="scrollToSection('screens')" class="nav-btn">Скриншоты</a>
+            <a onclick="scrollToSection('download')" class="nav-btn">Скачать</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Твой персональный 
+<span class="neon">ИИ-Ассистент</span></h1>
+        <p>Управляй ПК голосом, узнавай погоду, общайся с нейросетью и чувствуй себя как Тони Старк.</p>
+        <a href="Omini_v2.exe" class="btn" download>Скачать Omini</a>
+    </section>
+
+    <section
+
+
+class="features" id="features">
+        <h2>Возможности</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🎤 Голосовое управление</h3>
+                <p>Скажи «Открой Steam» или «Погода» — и он сделает это.</p>
+            </div>
+            <div class="card">
+                <h3>🧠 Нейросети</h3>
+                <p>Подключи свой ключ GigaChat или OpenAI в настройках.</p>
+            </div>
+            <div class="card">
+                <h3>🛡️ Безопасность</h3>
+                <p>Ключ хранится только на твоем ПК.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="screens" id="screens">
+        <h2>Скриншоты</h2>
+        <div class="screenshot-box">
+            <img src="screen.png" alt="Интерфейс Omini">
+        </div>
+    </section>
+
+    <section class="download" id="download">
+        <h2>Скачать Omini</h2>
+        <p style="margin: 0 auto 30px auto;">Версия v2.0 (Ultimate)</p>
+        <a href="Omini_v2.exe" class="btn" download>Скачать для Windows (.exe)</a>
+        <div class="warning">
+            <strong>⚠️ Важно:</strong> Для работы программы вам понадобится <strong>API-ключ</strong> от нейросети. Введите его при первом запуске в настройках.
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 OminiAsistent.</p>
+    </footer>
+
+    <script>
+        // Функция плавного скролла (работает 100%)
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Нейроны
+        const canvas = document.getElementById('neural-bg');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+        for (let i = 0; i < 70; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.8,
+                vy: (Math.random() - 0.5) * 0.8,
+                radius: Math.random() * 2 + 1
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(0, 170, 255, 0.8)';
+            ctx.strokeStyle = 'rgba(0, 170, 255, 0.15)';
+
+            particles.forEach((p, i) => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+</body>
+</html>
+
+
+
+
+
