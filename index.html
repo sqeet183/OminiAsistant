@@ -3,24 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omini Assistant</title>
+    <title>Omini Assistant | Корпорация Матвей</title>
     <style>
-        /* Все стили вшиты прямо сюда, чтобы точно работало */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background-color: #050505; color: #fff; overflow-x: hidden; scroll-behavior: smooth; }
         
-        /* Нейроны на фоне */
-        #neural-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        #neural-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 
-        /* Шапка */
         header { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; padding: 20px 50px; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #1a1a1a; }
         .logo { font-size: 24px; font-weight: bold; color: #00aaff; }
         nav { display: flex; gap: 20px; align-items: center; }
         .nav-btn { color: #b0b0b0; text-decoration: none; cursor: pointer; font-size: 16px; transition: 0.3s; }
         .nav-btn:hover { color: #00aaff; }
 
-        /* Секции */
-        section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 1; }
         .hero { align-items: flex-start; background: radial-gradient(circle at 70% 50%, #002b4d 0%, #050505 60%); }
         h1 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; }
         .neon { color: #00aaff; text-shadow: 0 0 15px rgba(0, 170, 255, 0.6); }
@@ -29,23 +25,36 @@
         .btn { display: inline-block; background: #007bff; color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.3s; box-shadow: 0 0 15px rgba(0, 123, 255, 0.5); border: none; cursor: pointer; }
         .btn:hover { background: #0056b3; box-shadow: 0 0 25px rgba(0, 123, 255, 0.9); transform: translateY(-2px); }
 
-        /* Блоки контента */
-        .features, .screens { text-align: center; background: rgba(10,10,10,0.8); }
+        .features, .screens, .changelog, .instructions { text-align: center; background: rgba(10,10,10,0.85); backdrop-filter: blur(5px); }
         h2 { font-size: 2.5rem; margin-bottom: 40px; color: #00aaff; }
         
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto; }
-        .card { background: #111; padding: 30px; border-radius: 12px; border: 1px solid #222; transition: 0.3s; }
+        .card { background: #111; padding: 30px; border-radius: 12px; border: 1px solid #222; transition: 0.3s; text-align: left; }
         .card:hover { border-color: #00aaff; transform: translateY(-5px); }
         .card h3 { color: #00aaff; margin-bottom: 15px; }
 
         .screenshot-box { max-width: 900px; margin: 0 auto; border-radius: 12px; border: 2px solid #007bff; box-shadow: 0 0 30px rgba(0, 123, 255, 0.3); overflow: hidden; }
         .screenshot-box img { width: 100%; display: block; }
 
+        .changelog { background: rgba(0, 15, 30, 0.9); padding: 80px 10%; }
+        .changelog-list { max-width: 800px; margin: 0 auto; text-align: left; }
+        .changelog-item { margin-bottom: 15px; background: #0a192f; padding: 15px 20px; border-radius: 8px; border-left: 4px solid #00ffff; }
+        .changelog-item strong { color: #00ffff; }
+
+        .instructions { background: rgba(0,0,0,0.9); padding: 80px 10%; }
+        .step-list { max-width: 800px; margin: 0 auto; text-align: left; }
+        .step { margin-bottom: 20px; background: #111; padding: 20px; border-radius: 10px; border-left: 4px solid #00aaff; }
+        .step h4 { color: #00aaff; margin-bottom: 10px; font-size: 1.2rem; }
+        .step p { margin-bottom: 0; font-size: 1rem; color: #ccc; }
+
         .download { text-align: center; background: rgba(0,26,51,0.8); }
         .warning { background: rgba(255, 193, 7, 0.1); border: 1px solid #ffc107; color: #ffd54f; padding: 20px; border-radius: 10px; max-width: 600px; margin: 40px auto; text-align: left; }
         .warning strong { color: #ffca28; }
         
-        footer { text-align: center; padding: 30px; background: #000; color: #555; border-top: 1px solid #111; }
+        footer { text-align: center; padding: 30px; background: #000; color: #555; border-top: 1px soli
+
+
+d #111; position: relative; z-index: 1;}
     </style>
 </head>
 <body>
@@ -57,6 +66,8 @@
         <nav>
             <a onclick="scrollToSection('features')" class="nav-btn">Возможности</a>
             <a onclick="scrollToSection('screens')" class="nav-btn">Скриншоты</a>
+            <a onclick="scrollToSection('changelog')" class="nav-btn">Что нового</a>
+            <a onclick="scrollToSection('instructions')" class="nav-btn">Инструкция</a>
             <a onclick="scrollToSection('download')" class="nav-btn">Скачать</a>
         </nav>
     </header>
@@ -65,14 +76,7 @@
         <h1>Твой персональный 
 <span class="neon">ИИ-Ассистент</span></h1>
         <p>Управляй ПК голосом, узнавай погоду, общайся с нейросетью и чувствуй себя как Тони Старк.</p>
-        <!-- Ссылка на твой EXE -->
-        <a href="https://github.com/sqeet183/OminiAsistant
-GitHub - sqeet183/OminiAsistant: Твой персональный Джарвис. Скачать Omini Ultimate для Windows.
-GitHub - sqeet183/OminiAsistant: Твой персональный Джарвис. Скачать Omini Ultimate для Windows.
-github.com
-
-
-/releases/download/v2.0/Omini_v2.exe" class="btn">Скачать Omini</a>
+        <a href="#download" class="btn">Скачать Omini</a>
     </section>
 
     <section class="features" id="features">
@@ -84,7 +88,7 @@ github.com
             </div>
             <div class="card">
                 <h3>🧠 Нейросети</h3>
-                <p>Подключи свой ключ GigaChat или OpenAI в настройках.</p>
+                <p>Подключи свой ключ GigaChat в настройках.</p>
             </div>
             <div class="card">
                 <h3>🛡️ Безопасность</h3>
@@ -100,13 +104,68 @@ github.com
         </div>
     </section>
 
+    <section class="changelog" id="changelog">
+        <h2>Что нового в Omini 2.0</h2>
+        <div class="changelog-list">
+            <div class="changelog-item">
+                <strong>🎤 Микрофон:</strong> Добавлено распознавание голоса. Теперь вы можете управлять ассистентом, просто говоря в микрофон.
+            </div>
+            <div class="changelog-item">
+                <strong>🌍 Смена языка:</strong> Полная поддержка русского и английского языков. Весь интерфейс переводится в один клик.
+            </div>
+            <div class="changelog-item">
+                <strong>🎨 Темы интерфейса:</strong> Выбирайте цвет шара и интерфейса: синий (стандарт), оранжевый или красный.
+            </div>
+            <div class="changelog-item">
+                <strong>💬 История чатов:</strong> Ассистент запоминает ваши диалоги и загружает их при следующем запуске.
+            </div>
+            <div class="changelog-item">
+                <strong>⚙️ Улучшенные настройки:</strong> Ввод API-ключа стал безопаснее. Ключ теперь не вшит в код, а сохраняется в памяти вашего ПК.
+            </div>
+            <div class="changelog-item">
+                <strong>🖱️ Улучшенный интерфейс:</strong> Плавная выдвижная панель, исправленные кнопки окна (свернуть, развернуть, закрыть) и новые встроенные команды (время, погода, браузер).
+            </div>
+        </div>
+    </section>
+
+    <section class="instructions" id="instructions">
+        <h2>Инструкция по установке</h2>
+        <div class="step-list">
+            <div class="step">
+                <h4>Шаг 1: Скачайте и распакуйте</h4>
+                <p>Нажмите кнопку «Скачать для Windows» ниже и скачайте архив <b>Omini_v2.zip</b>. Распакуйте его в любую папку на компьютере.</p>
+            </div>
+            <div class="step">
+                <h4>Шаг 2: Запустите программу</h4>
+                <p>В распакованной папке найдите файл <b>Omini2.0.exe</b> и запустите его.</p>
+            </div>
+            <div class="step">
+                <h4>Шаг 3: Получите API-ключ</h4>
+                <p>Для работы ИИ нужен ключ от GigaChat (Сбер). Зайдите на сайт <b>developers.sber.ru</b>, создайте приложение и скопируйте ваш <b>Authorization Key</b> (длинную строку).</p>
+            </div>
+            <div clas
+
+
+s="step">
+                <h4>Шаг 4: Введите ключ</h4>
+                <p>При первом запуске Omini откроется окно настроек. Вставьте ваш ключ в поле «API Ключ» и нажмите «Сохранить».</p>
+            </div>
+            <div class="step">
+                <h4>Шаг 5: Включите микрофон</h4>
+                <p>Если микрофон не работает, зайдите в <b>Параметры Windows -> Конфиденциальность -> Микрофон</b> и разрешите доступ для классических приложений.</p>
+            </div>
+        </div>
+    </section>
+
     <section class="download" id="download">
         <h2>Скачать Omini</h2>
         <p style="margin: 0 auto 30px auto;">Версия v2.0 (Ultimate)</p>
-        <!-- Ссылка на твой EXE -->
-        <a href="https://github.com/sqeet183/OminiAsistant/releases/download/v2.0/Omini_v2.exe" class="btn">Скачать для Windows (.exe)</a>
+        
+        <!-- ССЫЛКА НА ZIP АРХИВ -->
+        <a href="Omini_v2.zip" class="btn" download>Скачать для Windows (.zip)</a>
+        
         <div class="warning">
-            <strong>⚠️ Важно:</strong> Для работы программы вам понадобится <strong>API-ключ</strong> от нейросети. Введите его при первом запуске в настройках.
+            <strong>⚠️ Важно:</strong> Для работы программы вам понадобится <strong>API-ключ</strong> от нейросети. Введите его при первом запуске в настройках. Ключ хранится только у вас.
         </div>
     </section>
 
@@ -115,7 +174,6 @@ github.com
     </footer>
 
     <script>
-        // Функция плавного скролла
         function scrollToSection(id) {
             const element = document.getElementById(id);
             if (element) {
@@ -123,7 +181,6 @@ github.com
             }
         }
 
-        // Нейроны
         const canvas = document.getElementById('neural-bg');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
